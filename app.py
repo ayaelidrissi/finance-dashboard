@@ -7,7 +7,7 @@ st.title("📊 Retail Analytics Dashboard")
 
 # 1. Load your new CSV
 # Make sure the file in your folder is named 'retail_data.csv'
-df = pd.read_csv("retail_data.csv", encoding='ISO-8859-1')
+df = pd.read_csv("transactions.csv", encoding='ISO-8859-1')
 
 # 2. Data Cleaning (The 'Data Science' part)
 df['TotalAmount'] = df['Quantity'] * df['UnitPrice']
