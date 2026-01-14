@@ -13,7 +13,7 @@ st.markdown("""
         color: #f8fafc;
     }
     </style>
-    """, unsafe_allow_index=True)
+    """, unsafe_allow_html=True)
 
 st.title("📊 Retail Data Science Dashboard")
 st.markdown("Analyzing global transaction patterns and revenue trends.")
