@@ -21,6 +21,27 @@ total_income = df_selection[df_selection['Amount'] > 0]['Amount'].sum()
 total_spent = df_selection[df_selection['Amount'] < 0]['Amount'].sum()
 net_balance = total_income + total_spent
 
+
+# --- Add this right after your 'Net Balance' metric ---
+
+st.sidebar.markdown("---")
+st.sidebar.header("🎯 Budget Settings")
+monthly_budget = st.sidebar.number_input("Set Monthly Budget ($):", min_value=0.0, value=2000.0)
+
+# Calculate if we are over budget
+is_over_budget = abs(total_spent) > monthly_budget
+percent_used = (abs(total_spent) / monthly_budget) * 100
+
+# Display Budget Alert
+if is_over_budget:
+    st.error(f"🚨 ALERT: You are over budget by ${abs(total_spent) - monthly_budget:,.2f}!")
+else:
+    st.success(f"✅ Great job! You have ${monthly_budget - abs(total_spent):,.2f} remaining in your budget.")
+
+st.progress(min(percent_used / 100, 1.0)) # Visual progress bar
+st.write(f"Budget used: **{percent_used:.1f}%**")
+
+
 col1, col2, col3 = st.columns(3)
 col1.metric("Total Income", f"${total_income:,.2f}")
 col2.metric("Total Expenses", f"${abs(total_spent):,.2f}", delta_color="inverse")
