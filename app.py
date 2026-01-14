@@ -36,8 +36,8 @@ def load_data():
     # Expected: 'NumberOrdered', 'CostPerItem', 'ItemDescription', 'Country'
     
     # Create the TotalAmount column (Quantity * Price)
-    if 'NumberOrdered' in df.columns and 'CostPerItem' in df.columns:
-        df['TotalAmount'] = df['NumberOrdered'] * df['CostPerItem']
+    if 'NumberOfItemsPurchased' in df.columns and 'CostPerItem' in df.columns:
+        df['TotalAmount'] = df['NumberOfItemsPurchased'] * df['CostPerItem']
     else:
         # Fallback if names are slightly different in your online CSV
         st.error(f"Column mismatch! Available columns: {list(df.columns)}")
@@ -70,7 +70,7 @@ try:
 
     # 4. Top Metrics (KPIs)
     total_revenue = df_selection['TotalAmount'].sum()
-    total_items = df_selection['NumberOrdered'].sum()
+    total_items = df_selection['NumberOfItemsPurchased'].sum()
     
     col1, col2, col3 = st.columns(3)
     
